@@ -762,6 +762,18 @@ class Graphics {
       })
 
       elPoint = p
+    } else if (opts.shape === 'polygon') {
+      const polygonString = opts.polygonString || '0,0 10,10 20,0 10,-10'
+      elPoint = this.drawPolygon(polygonString, {
+        cx: x,
+        cy: y,
+        class: opts.class ? opts.class : '',
+        stroke: opts.pointStrokeColor,
+        fill: opts.pointFillColor,
+        'fill-opacity': opts.pointFillOpacity ? opts.pointFillOpacity : 1,
+        'stroke-width': opts.pointStrokeWidth ? opts.pointStrokeWidth : 0,
+        'stroke-opacity': opts.pointStrokeOpacity ? opts.pointStrokeOpacity : 1,
+      })
     } else if (opts.shape === 'circle' || !opts.shape) {
       if (!Utils.isNumber(y)) {
         size = 0
@@ -777,37 +789,6 @@ class Graphics {
         stroke: opts.pointStrokeColor,
         fill: opts.pointFillColor,
         'fill-opacity': opts.pointFillOpacity ? opts.pointFillOpacity : 1,
-        'stroke-width': opts.pointStrokeWidth ? opts.pointStrokeWidth : 0,
-        'stroke-opacity': opts.pointStrokeOpacity ? opts.pointStrokeOpacity : 1,
-      })
-    } else if (opts.shape === 'triangle') {
-      const pathData = `M${x} ${y - size} L${x + size} ${y + size} L${
-        x - size
-      } ${y + size} Z`
-      elPoint = this.graphics.path(pathData)
-    } else if (opts.shape === 'diamond') {
-      const pathData = `M${x} ${y - size} L${x + size} ${y} L${x} ${
-        y + size
-      } L${x - size} ${y} Z`
-      elPoint = this.graphics.path(pathData)
-    } else if (opts.shape === 'hexagon') {
-      const hSize = (size * Math.sqrt(3)) / 2
-      const pathData = `M${x - size / 2} ${y - hSize} L${x + size / 2} ${
-        y - hSize
-      } L${x + size} ${y} L${x + size / 2} ${y + hSize} L${x - size / 2} ${
-        y + hSize
-      } L${x - size} ${y} Z`
-      elPoint = this.graphics.path(pathData)
-    }
-
-    if (elPoint) {
-      elPoint.attr({
-        cx: x,
-        cy: y,
-        class: opts.class ? opts.class : '',
-        fill: opts.pointFillColor,
-        'fill-opacity': opts.pointFillOpacity ? opts.pointFillOpacity : 1,
-        stroke: opts.pointStrokeColor,
         'stroke-width': opts.pointStrokeWidth ? opts.pointStrokeWidth : 0,
         'stroke-opacity': opts.pointStrokeOpacity ? opts.pointStrokeOpacity : 1,
       })

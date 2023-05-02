@@ -362,14 +362,7 @@ export const optionsPattern = {
                   shape: {
                     title: 'Shape of the marker',
                     type: String,
-                    choices: [
-                      'circle',
-                      'square',
-                      'rectangle',
-                      'triangle',
-                      'diamond',
-                      'hexagon',
-                    ],
+                    choices: ['circle', 'square', 'polygon'],
                     default: 'circle',
                   },
                   radius: {
@@ -1753,6 +1746,7 @@ export const optionsPattern = {
                 'horizontalLines',
                 'slantedLines',
                 'squares',
+                'polygons',
                 'circles',
               ],
               default: 'verticalLines',
@@ -2143,7 +2137,7 @@ export const optionsPattern = {
         shape: {
           title: 'Shape of the marker',
           type: String,
-          choices: ['circle', 'square'],
+          choices: ['circle', 'square', 'polygon'],
           default: 'circle',
         },
         radius: {

@@ -1894,6 +1894,18 @@
             'stroke-opacity': opts.pointStrokeOpacity ? opts.pointStrokeOpacity : 1
           });
           elPoint = p;
+        } else if (opts.shape === 'polygon') {
+          var polygonString = opts.polygonString || '0,0 10,10 20,0 10,-10';
+          elPoint = this.drawPolygon(polygonString, {
+            cx: x,
+            cy: y,
+            class: opts.class ? opts.class : '',
+            stroke: opts.pointStrokeColor,
+            fill: opts.pointFillColor,
+            'fill-opacity': opts.pointFillOpacity ? opts.pointFillOpacity : 1,
+            'stroke-width': opts.pointStrokeWidth ? opts.pointStrokeWidth : 0,
+            'stroke-opacity': opts.pointStrokeOpacity ? opts.pointStrokeOpacity : 1
+          });
         } else if (opts.shape === 'circle' || !opts.shape) {
           if (!Utils$1.isNumber(y)) {
             size = 0;
@@ -1908,32 +1920,6 @@
             stroke: opts.pointStrokeColor,
             fill: opts.pointFillColor,
             'fill-opacity': opts.pointFillOpacity ? opts.pointFillOpacity : 1,
-            'stroke-width': opts.pointStrokeWidth ? opts.pointStrokeWidth : 0,
-            'stroke-opacity': opts.pointStrokeOpacity ? opts.pointStrokeOpacity : 1
-          });
-        } else if (opts.shape === 'triangle') {
-          var pathData = "M".concat(x, " ").concat(y - size, " L").concat(x + size, " ").concat(y + size, " L").concat(x - size, " ").concat(y + size, " Z");
-          elPoint = this.graphics.path(pathData);
-        } else if (opts.shape === 'diamond') {
-          var _pathData = "M".concat(x, " ").concat(y - size, " L").concat(x + size, " ").concat(y, " L").concat(x, " ").concat(y + size, " L").concat(x - size, " ").concat(y, " Z");
-
-          elPoint = this.graphics.path(_pathData);
-        } else if (opts.shape === 'hexagon') {
-          var hSize = size * Math.sqrt(3) / 2;
-
-          var _pathData2 = "M".concat(x - size / 2, " ").concat(y - hSize, " L").concat(x + size / 2, " ").concat(y - hSize, " L").concat(x + size, " ").concat(y, " L").concat(x + size / 2, " ").concat(y + hSize, " L").concat(x - size / 2, " ").concat(y + hSize, " L").concat(x - size, " ").concat(y, " Z");
-
-          elPoint = this.graphics.path(_pathData2);
-        }
-
-        if (elPoint) {
-          elPoint.attr({
-            cx: x,
-            cy: y,
-            class: opts.class ? opts.class : '',
-            fill: opts.pointFillColor,
-            'fill-opacity': opts.pointFillOpacity ? opts.pointFillOpacity : 1,
-            stroke: opts.pointStrokeColor,
             'stroke-width': opts.pointStrokeWidth ? opts.pointStrokeWidth : 0,
             'stroke-opacity': opts.pointStrokeOpacity ? opts.pointStrokeOpacity : 1
           });
