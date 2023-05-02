@@ -824,7 +824,7 @@ type ApexLegend = {
   }
 }
 
-type ApexMarkerShape = 'circle' | 'square' | 'rectangle' | 'triangle' | 'diamond' | 'hexagon' | string[]
+type ApexMarkerShape = 'circle' | 'square' | 'polygon' | string[]
 
 type ApexDiscretePoint = {
   seriesIndex?: number
